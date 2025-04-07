@@ -25,36 +25,6 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ','.join(map(str, gpus))
 # Define Device TypeAlias
 Device: TypeAlias = str | torch.device | None
 
-
-def get_imported_packages_with_versions() -> Dict[str, str]:
-    """获取当前导入的所有第三方包及其版本"""
-    imported_packages = {}
-
-    # 获取所有已导入的模块
-    for name, module in sys.modules.items():
-        # 过滤掉 Python 标准库、内置模块和子模块
-        if (
-                name in sys.stdlib_module_names  # Python 3.10+
-                or name.startswith('_')
-                or '.' in name  # 避免子模块重复（如 `numpy.core`）
-                or not hasattr(module, '__file__')  # 内置模块（如 `sys`）
-        ):
-            continue
-
-        # 尝试获取包名（`numpy` 而不是 `numpy.core`）
-        package_name = name.split('.')[0]
-
-        # 获取包版本
-        try:
-            version = importlib.metadata.version(package_name)
-            imported_packages[package_name] = version
-        except importlib.metadata.PackageNotFoundError:
-            # 如果找不到版本，可能是内置模块或本地文件
-            continue
-
-    return imported_packages
-
-
 def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
@@ -522,7 +492,4 @@ if __name__ == "__main__":
     print(time.asctime(time.localtime(time.time())))
     main()
     print(time.asctime(time.localtime(time.time())))
-    packages = get_imported_packages_with_versions()
-    print("本次运行导入的第三方包及版本：")
-    for pkg, version in packages.items():
-        print(f"{pkg}=={version}")
+   
