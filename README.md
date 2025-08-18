@@ -15,6 +15,8 @@
 
 - python == 3.10.0
 - torch == 2.1.1
-Please cite the paper:
+
+### Please cite the paper:
 SSM-Transformer based Dual-Scale Convolutional Neural Network for High-Performance EEG Decoding
+
 
