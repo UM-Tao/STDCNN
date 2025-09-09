@@ -17,6 +17,9 @@
 - torch == 2.1.1
 
 ### Please cite the paper:
-SSM-Transformer based Dual-Scale Convolutional Neural Network for High-Performance EEG Decoding
+Tao W, Ye J, Liu X, et al. SSM-Transformer based Dual-Scale Convolutional Neural Network for High-Performance EEG Decoding[J]. Tsinghua Science and Technology, 2025.
+
+
+
 
 
